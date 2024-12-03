@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class PageDownloadTest {
   @BeforeAll
-  static void setup() {
+  static void setUp() {
     com.codeborne.selenide.Configuration.browserSize = "1920x1080";
     Configuration.browser = "edge";
   }
@@ -18,6 +19,9 @@ public class PageDownloadTest {
     $(byText("Solutions")).hover();
   $(byText("Enterprises")).click();
   $("#hero-section-brand-heading").shouldHave(text("The AI-powered developer platform"));
-    sleep(5000);
+  }
+  @AfterEach
+  public void tearDown() {
+    closeWebDriver();
   }
 }
